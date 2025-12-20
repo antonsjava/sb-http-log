@@ -78,7 +78,7 @@ httplog:
 You can define default values for configuration by this
 ```yaml
 httplog:
-  logger: http.log # name of slf4j logger to log messages (default: httplog) 
+  logger: httplog # name of slf4j logger to log messages (default: httplog) 
                    # you can append ':<level>' to logger name (default :denug)
   formatter: oneline  # type of output oneline/multiline (default: oneline)
   doNothing: true  # do nothing for case (default: false)
@@ -98,6 +98,7 @@ httplog:
       encoding: utf-8 # default encoding (default: utf-8)
       forceOneLine: true # force one line of payload data (default: false)
       indent: "  " # force structured output for json and xml (default: )
+  
   response:
     expectedLength: 1234 # default size of buffers (default: 4000)
     prefix: RES # prefix of message (if it is empty message is not printed) (default: RES)
