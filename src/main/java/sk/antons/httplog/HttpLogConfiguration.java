@@ -50,12 +50,21 @@ public class HttpLogConfiguration {
     private static Logger log = LoggerFactory.getLogger(HttpLogConfiguration.class);
 
 
+
     @Bean @ConditionalOnMissingBean(LogFilter.class)
     public FilterRegistrationBean httpLogFilterRegistrationBean(Environment env) {
+
+        int order = Integer.MIN_VALUE;
+        try {
+            order = Integer.parseInt(env.getProperty("httplog.filterOrder"));
+        } catch(Exception e) {
+            order = Integer.MAX_VALUE;
+        }
+
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         LogFilter filter = httpLog(env);
         registrationBean.setFilter(filter);
-        registrationBean.setOrder(Integer.MAX_VALUE); // mostly because of auth filter (but some response header are not visible)
+        registrationBean.setOrder(order);
         return registrationBean;
     }
 

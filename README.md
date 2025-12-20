@@ -1,8 +1,10 @@
 
 # sb-http-log
 
-helper logging utility fo srping boot rest api. It is used for logging text based messages
-mostly json based. 
+
+Helper utility with springboot configuration for io.github.antonsjava:log-servlet-filter logging utility.
+
+It is used for logging text based request response messages. 
 
 It produces following messages
 
@@ -10,7 +12,8 @@ It produces following messages
  - REQ[1] GET "url" headers["headers"] payload["payload"]
  - RES[1] GET "url" status: 200 time: 117 headers["headers"] payload["payload"]
 
-Firstone is on very beggining of request log and others are on end of request log.
+First line is on very beggining of request log and other lines are on end of request log.
+
 You can configure to not display any of those lines. You can configure to display or not parts of messages.
 
 Not all headers are accesible to filter defined by this component. 
@@ -65,7 +68,14 @@ You can disable whole configuration reading by this
 httplog:
   enabled: false # if false whole logging is disabled (default: true)
 ```
-You can define default for configuration by this
+you can define filter order by 
+```yaml
+httplog:
+  filterOrder: # order of log filter in processing chain (default: Integer.MAX_VALUE)
+               # max value is better for request headers 
+               # min value is better for response headers
+```
+You can define default values for configuration by this
 ```yaml
 httplog:
   logger: http.log # name of slf4j logger to log messages (default: httplog) 
