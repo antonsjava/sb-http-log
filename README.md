@@ -44,12 +44,6 @@ add dependency
      <version>LATEST</version>
  </dependency>
 ```
-Somewhere in your application configuration add 
-```
-@Configuration
-@Import(sk.antons.httplog.HttpLogConfiguration.class)
-public class MyAppConf {....}
-```
 configure logging in you environment
 ```
 logging:
